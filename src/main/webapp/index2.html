@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<script src="/bower_components/angular/angular.min.js"></script>
+
+<body>
+
+    <div ng-controller="myController">
+        {{getAccountDetails}}
+    </div>
+    <script>
+        var myApp = angular.module("myApp", []);
+        myApp.controller("myController", function($http, $scope) {
+             $http({
+              method:'GET',
+               url:'http://localhost:8080/xbasic-web-app/rest/accounts',
+               useDefaultXhrHeader: false
+             }).then(function handleSuccess(response) {
+                       alert(response.data);
+                       $scope.getAccountDetails =response.data;
+                       
+                 });
+            
+            $scope.getAccountDetails = function() {
+               
+
+            }
+        });
+    </script>
+</body>
+
+</html>
